@@ -1,5 +1,32 @@
-- hosts: frontends
-  gather_facts: false
+- hosts: tag_AnsibleGroup_bastions
+  gather_facts: true
   tasks:
-  - name: Use Uri module for wrting smoke test.
+#  - name: Use Uri module for wrting smoke test.
+  - name: Gather frontend info
+    ec2_instance_info:
+      filters:
+        "tag:Name": frontend1
+    register: frontend_info
+#    tags:
+#      - osp.smoke
+
+  - name: Show public IP
+    debug: var=frontend_info.instances[0].network_interfaces[0].association.public_ip
+
+  - name: Curl website
+    uri:
+      url: http://{{frontend_info.instances[0].network_interfaces[0].association.public_ip}}
+      return_content: yes
+    register: webpage
+#    tags:
+#      - osp.smoke
+
+  - name: Show webpage content
+    debug: var=webpage.content
+
   - name: Fail if 'Ansible has done its job' is not in the page content
+    fail:
+    when: "'Ansible has done its job' not in webpage.content"
+#    tags:
+#      - osp.smoke
+
