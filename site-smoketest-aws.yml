@@ -10,6 +10,7 @@
   - name: Gather frontend info
     ec2_instance_info:
       region: us-east-1
+      aws_secret_key: "Creds for AWS instances"
       filters:
         "tag:Name": frontend1
     register: frontend_info
