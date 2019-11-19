@@ -1,5 +1,5 @@
-- hosts: tag_instance_filter_three_tier_app_haizhang_redhat_com
-  gather_facts: false
+- hosts: tag_AnsibleGroup_bastions
+  gather_facts: true
 #  roles:
 #  - name: osp-facts
 
