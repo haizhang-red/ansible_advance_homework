@@ -4,7 +4,7 @@
 #  - name: Use Uri module for wrting smoke test.
   - name: Install required packages 
     yum:
-      name: boto3
+      name: python2-boto3
       state: latest
 
   - name: Gather frontend info
