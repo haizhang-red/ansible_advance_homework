@@ -1,4 +1,4 @@
-- hosts: tag_AnsibleGroup_bastions
+- hosts: frontends
   gather_facts: true
   tasks:
 #  - name: Use Uri module for wrting smoke test.
