@@ -9,6 +9,7 @@
 
   - name: Gather frontend info
     ec2_instance_info:
+      region: us-east-1
       filters:
         "tag:Name": frontend1
     register: frontend_info
