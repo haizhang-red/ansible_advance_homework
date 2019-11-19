@@ -2,27 +2,29 @@
   gather_facts: true
   tasks:
 #  - name: Use Uri module for wrting smoke test.
-  - name: Install required packages 
-    yum:
-      name: python2-boto3
-      state: latest
+#  - name: Install required packages 
+#    yum:
+#      name: python2-boto3
+#      state: latest
 
-  - name: Gather frontend info
-    ec2_instance_info:
-      region: us-east-1
-      aws_access_key: "Creds for AWS instances"
-      filters:
-        "tag:Name": frontend1
-    register: frontend_info
+#  - name: Gather frontend info
+#    ec2_instance_info:
+#      region: us-east-1
+#      aws_access_key: "Creds for AWS instances"
+#      filters:
+#        "tag:Name": frontend1
+#    register: frontend_info
 #    tags:
 #      - osp.smoke
 
   - name: Show public IP
-    debug: var=frontend_info.instances[0].network_interfaces[0].association.public_ip
+#    debug: var=frontend_info.instances[0].network_interfaces[0].association.public_ip
+    debug: var=ansible_host
 
   - name: Curl website
     uri:
       url: http://{{frontend_info.instances[0].network_interfaces[0].association.public_ip}}
+      url: http://{{ansible_host}}
       return_content: yes
     register: webpage
 #    tags:
