@@ -8,7 +8,7 @@
 
   - name: Check the instances status
     wait_for:
-      host: inventory_hostname
+      host: "{{ inventory_hostname }}"
       port: 22
       search_regex: OpenSSH
       timeout: 600
