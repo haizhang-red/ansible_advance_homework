@@ -3,12 +3,8 @@
   gather_facts: true
   become: yes
   tasks:
-
   - name: Show inventory_hostname
     debug: var=inventory_hostname
-
-  - name: Show localhost
-    debug: var=localhost
 
   - name: Check the instances status
     wait_for:
@@ -16,7 +12,7 @@
       port: 22
       search_regex: OpenSSH
       timeout: 600
-    delegate_to: localhost
+    delegate_to: inventory_hostname
 
   - name: Show public IP
     debug: var=ansible_host     
