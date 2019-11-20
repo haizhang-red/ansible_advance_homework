@@ -7,7 +7,7 @@
   - name: Show inventory_hostname
     debug: var=inventory_hostname
 
- - name: Show localhost
+  - name: Show localhost
     debug: var=localhost
 
   - name: Check the instances status
